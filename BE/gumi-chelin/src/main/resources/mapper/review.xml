@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.gumichelin.model.mapper.ReviewMapper">
+
+    <insert id="insert" parameterType="Review">
+        INSERT INTO t_review (userId, storeId, rating, content, imgUrl, hearts)
+        VALUES (#{userId}, #{storeId}, #{rating}, #{content}, #{imgUrl}, #{hearts})
+    </insert>
+
+    <update id="update" parameterType="Review">
+        UPDATE t_review SET
+        userId = #{userId}, storeId =  #{storeId},
+        rating = #{rating},
+        content = #{content}
+        imgUrl = #{imgUrl}
+        hearts = #{hearts}
+        WHERE reviewId = #{reviewId}
+    </update>
+
+    <delete id="delete" parameterType="int">
+        DELETE FROM t_review
+        WHERE reviewId = #{reviewId}
+    </delete>
+
+    <select id="selectByUserId" parameterType="int">
+        SELECT * FROM t_review
+        WHERE userId = #{userId}
+    </select>
+
+    <select id="selectAll">
+        SELECT * FROM t_review
+    </select>
+
+</mapper>
